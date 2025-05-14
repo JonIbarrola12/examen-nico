@@ -7,13 +7,12 @@ public class Aplicacion {
         Scanner scanner = new Scanner(System.in);
         Connection conn = null;
         int opcion;
-        String server = "datos.somox.com";
-        String database= "Libreria Somox";
-        String user = "LibreriaSomox";
-        String password = "LibreriaSomox";
+        String server = "127.0.0.1:3306";
+        String database= "examennico";
+        String user = "alumno1";
+        String password = "alumno1";
         String crearTablaSQL= "CREATE TABLE Libros (lib_isbn VARCHAR(10), lib_titulo VARCHAR(50), lib_autor VARCHAR(50), lib_id VARCHAR(10));";
         String insertarLibroSQL= "INSERT INTO Libros (lib_isbn, lib_titulo, lib_autor, lib_id) VALUES (?, ?, ?, ?)";
-
 
         do{
             Io.sop("----------------------------------------------------------");
@@ -33,15 +32,19 @@ public class Aplicacion {
                     Io.continuar(scanner);
                     break;
                 case 2: 
-                    if(Io.crearTablaLibros(conn, crearTablaSQL)){
-                        Io.sop("La tabla ha sido creada correctamente");
+                    if(conn!=null){
+                        if(Io.crearTablaLibros(conn, crearTablaSQL)){
+                            Io.sop("La tabla ha sido creada correctamente");
+                        }else{
+                            Io.sop("Error al crear la tabla");
+                        }
                     }else{
-                        Io.sop("Error al crear la tabla");
+                        Io.sop("No se ha establecido al conexion");
                     }
                     Io.continuar(scanner);
                     break;
                 case 3:
-                    if(Io.insertarLibro(conn, scanner, insertarLibroSQL)){
+                    if(Io.insertarLibro(conn, insertarLibroSQL)){
                         Io.sop("Libro insertado correctamente");
                     }else{
                         Io.sop("Error al insertar el libro");

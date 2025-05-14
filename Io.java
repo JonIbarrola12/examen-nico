@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Io {
+    static Scanner scanner =new Scanner (System.in);
     public static void sop(String mensaje){
         System.out.println(mensaje);
     }
@@ -32,7 +33,7 @@ public class Io {
             return false;
         }
     }
-    public static boolean insertarLibro(Connection conn, Scanner scanner, String sql){
+    public static boolean insertarLibro(Connection conn,  String sql){
         sop("Introduce el isbn del libro:");
         String isbn = scanner.nextLine();
         sop("Introduce el titulo del libro:");
@@ -45,7 +46,7 @@ public class Io {
             stmt.setString(1, isbn);
             stmt.setString(2, titulo);
             stmt.setString(3, autor);
-            stmt.setString(4,id);
+            stmt.setString(4, id);
             stmt.executeUpdate();
             return true;
         }catch(SQLException e){
