@@ -53,9 +53,11 @@ public class Aplicacion {
                     break;
                 case 0:
                     Io.sop("Gracias por usar la aplicacion");
+                    Io.continuar(scanner);
                     break;
                 default:
                     Io.sop("Opcion  Incorrecta");
+                    Io.continuar(scanner);   
                     break;
             }
         }while(opcion!=0);
